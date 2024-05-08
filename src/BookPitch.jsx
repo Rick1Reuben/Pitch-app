@@ -25,9 +25,9 @@ const [isBooked, setIsBooked] = useState(false);
 
    const updateReservationStatus = (newStatus) => {
     // Make a PATCH request to update the reservation status
-    axios.patch('/api/stadiums', { name: stadiumName, status: newStatus ? 'Booked' : 'Free' })
+    axios.patch('http://localhost:3000/stadiums', { name: {stadium.name}, status: newStatus ? 'Booked' : 'Free' })
       .then(response => {
-        console.log('Reservation status updated successfully:', response.data);
+        alert('Reservation status updated successfully:', response.data);
       })
       .catch(error => {
         console.error('Error updating reservation status:', error);
@@ -49,7 +49,7 @@ const [isBooked, setIsBooked] = useState(false);
 };
 The rest ziwe kwa return hapa in this component:
 {stadiums && stadiums.map(stadium =>
-  <Card key={stadium.name} stadium={stadium}/>
+  <Card key={stadium.name} stadium={stadium.name}/>
 )}*/ 
   return (
   
