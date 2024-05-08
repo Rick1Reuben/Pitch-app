@@ -1,98 +1,110 @@
-import React from "react";
-import "./Home.css";
-import {Link} from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./bookpitch.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function BookPitch() {
-  const [bookData, setBookData] = useState([])
-  //The data fetched here should show on the "Book Pitch" card. The status should be updated once the 'Book Now' button is pressed. All the updates should be done within the card.
-//   useEffect(() => {
-//     fetch("http://localhost:3000/stadiums")
-//     .then(response => response.json())
-//     .then(stadiums => setBookData(stadiums))
-//   },[]),
+  const [bookData, setBookData] = useState([]);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/stadiums")
+      .then((response) => response.json())
+      .then((stadiums) => setBookData(stadiums));
+  }, []);
 
-// here, we are using stadium.status, stadium.name, stadium.price, stadium.description- hizo ni from the server
-//A card should be created, where I can attach this data  
-
-/*The following iwe ndani ya CARD:
-const [isBooked, setIsBooked] = useState(false);
-
-  const handleClick = () => {
-    setIsBooked(!isBooked);
-    updateReservationStatus(!isBooked);-----This updates the status on the server
+  const handleBooking = (stadiumId, currentStatus) => {
+    const updatedStatus = currentStatus === "Free" ? "Booked" : "Free";
+    fetch(`http://localhost:3000/stadiums/${stadiumId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: updatedStatus }),
+    })
+      .then((response) => response.json())
+      .then((updatedStadium) => {
+        setBookData((prevData) =>
+          prevData.map((stadium) =>
+            stadium.id === updatedStadium.id ? updatedStadium : stadium
+          )
+        );
+        if (updatedStatus === "Booked") {
+          toast.success("Successfully booked!");
+        } else {
+          toast.error("Reservation cancelled.");
+        }
+      })
+      .catch((error) => console.error("Error updating status:", error));
   };
 
-   const updateReservationStatus = (newStatus) => {
-    // Make a PATCH request to update the reservation status
-    axios.patch('http://localhost:3000/stadiums', { name: {stadium.name}, status: newStatus ? 'Booked' : 'Free' })
-      .then(response => {
-        alert('Reservation status updated successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Error updating reservation status:', error);
-      });
-
-
-
   return (
-    <div>
-    -FOR THE BUTTONS:
-      {isBooked ? (
-        <button onClick={handleClick}>Cancel Reservation</button>
-      ) : (
-        <button onClick={handleClick}>Book Now</button>
-      )}
-      <p>Status: {isBooked ? 'Booked' : 'Free'}</p>
-    </div>
-  );
-};
-The rest ziwe kwa return hapa in this component:
-{stadiums && stadiums.map(stadium =>
-  <Card key={stadium.name} stadium={stadium.name}/>
-)}*/ 
-  return (
-  
-      <div id="main">
-        <div className="navbar">
-          <div className="icon">
-            <h2 className="logo">Pitch</h2>
-          </div>
-          <div className="menu">
-            <ul>
-            <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/bookpitch">BookPitch</Link>
-              </li>
-              <li>
-                <Link to="/reviews">Reviews</Link>
-              </li>
-            </ul>
-          </div>
+    <div id="main">
+      <div className="navbar">
+        <div className="icon">
+          <h2 className="logo">Pitch</h2>
         </div>
-        <footer>
-          <p>Pitch</p>
-          <p>For more information contact us at info@pitch.co.ke or follow us on our social media platforms at pitch.ke</p>
-          <div className="social">
-            <a href="#">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-linkedin"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-whatsapp"></i>
-            </a>
-          </div>
-          <div className="copy">
-            <p>&copy; 2024 Pitch. All Rights Reserved</p>
-          </div>
-        </footer>
+        <div className="menu">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/bookpitch">BookPitch</Link>
+            </li>
+            <li>
+              <Link to="/reviews">Reviews</Link>
+            </li>
+          </ul>
+        </div>
       </div>
-      
+      <div className="container">
+        {bookData &&
+          bookData.map((stadium) => (
+            <div key={stadium.name} className="stadium-card">
+              <div className="image-container">
+                <img src={stadium.image} alt="Stadium" />
+              </div>
+              <div className="content">
+                <h3 className="stadium-name">{stadium.name}</h3>
+                <p className="description">{stadium.description}</p>
+                <p className="price">Price: {stadium.price}</p>
+                <button
+                  className="book-button"
+                  onClick={() => handleBooking(stadium.id, stadium.status)}
+                >
+                  {stadium.status === "Free" ? "Book Now" : "Cancel Reservation"}
+                </button>
+                <p className="status">Status: {stadium.status}</p>
+              </div>
+            </div>
+          ))}
+      </div>
+      {/* Footer */}
+      <footer>
+        <p>Pitch</p>
+        <p>
+          For more information, contact us at info@pitch.co.ke or follow us
+          on our social media platforms at pitch.ke
+        </p>
+        <div className="social">
+          <a href="#">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="#">
+            <i className="fab fa-linkedin"></i>
+          </a>
+          <a href="#">
+            <i className="fab fa-whatsapp"></i>
+          </a>
+        </div>
+        <div className="copy">
+          <p>&copy; 2024 Pitch. All Rights Reserved</p>
+        </div>
+      </footer>
+      {/* Toast Container */}
+      <ToastContainer />
+    </div>
   );
 }
 

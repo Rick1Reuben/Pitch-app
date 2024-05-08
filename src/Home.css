@@ -2,6 +2,8 @@
   font-family: 'Josefin Sans', sans-serif;
 
 }
+
+
 body {
   margin: 0;
   padding: 0;
@@ -27,8 +29,8 @@ body {
 
 }
 .navbar {
-  background-color: white;
-  color: #000000;
+  background-color: black;
+  color: white;
   width: 1285px;
   height: 75px;
   display: flex;
@@ -73,7 +75,7 @@ ul li:first-child {
 
 ul li a {
   text-decoration: none;
-  color: black;
+  color:white;
   font-weight: bold;
   transition: color 0.4s ease;
 }

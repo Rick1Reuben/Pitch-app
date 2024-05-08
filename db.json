@@ -1,86 +1,84 @@
-
 {
-    "stadiums": [
-      {
-        "id": 1,
-        "name": "Anfield",
-        "image": "https://i.pinimg.com/736x/56/c4/82/56c48286fa641781d5d3707c75e783fa.jpg",
-        "description": "Anfield Stadium is located in Liverpool, England, and it is home to Liverpool Football Club. As of my last update, its capacity is around 54,074 spectators.",
-        "price":"$1000.99 per hour",
-        "status":"Free",
-        "comments": [
-          {
-            "id": 1,
-            "stadium": "Anfield",
-            "rating":"9",
-            "review": "Atmosphere was great, the fact that I scored here was also cool."
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Etihad",
-        "image": "https://i.guim.co.uk/img/media/888a4d1a86c821338ae04c8af431b2d3dcb80fe6/0_346_5184_3110/master/5184.jpg?width=1200&quality=85&auto=format&fit=max&s=774f6f583792a767bcefa1abe7d000dd",
-        "description": "The Etihad Stadium is located in Manchester, England, with a capacity of around 53,000 spectators.",
-        "price":"$1000.99 per hour",
-        "status":"Booked",
-        "comments": [
-          {
-            "id": 1,
-            "stadium": "Etihad",
-            "rating":"10",
-            "review": "What an experience!"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "name": "Old Trafford",
-        "image": "https://virtualbackgrounds.site/wp-content/uploads/2020/07/old-trafford-stadium.jpg",
-        "description": "Old Trafford, situated in Manchester, England, boasts a capacity of over 74,000 unhappy fans as the iconic home of  the most frustrating team Manchester United.",
-        "price":"$1200 per hour",
-        "status":"Free",
-        "comments": [
-          {
-            "id": 1,
-            "stadium": "Old Trafford",
-            "rating":"8",
-            "review": "It was fun to play in this stadium."
-          }
-        ]
-       },
-       {
-        "id": 4,
-        "name": "Emirates",
-        "image": "https://www.arsenal.com/sites/default/files/styles/link_image_extra_large/public/images/GettyImages-884411976.jpg?auto=webp&itok=w7-4LWKS",
-        "description": "",
-        "price":"$1000 per hour",
-        "status":"Booked",
-        "comments": [
-          {
-            "id": 1,
-            "stadium": "Emirates",
-            "rating":"8",
-            "review": "One of the best experiences I have had."
-          }
-        ]
-       },
-       {
-        "id": 5,
-        "name": "Allianz Arena",
-        "image": "https://images.unsplash.com/photo-1573559055341-51c1ced2b864?q=80&w=1680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "description": "Allianz Arena is a football stadium in Munich, Bavaria, Germany, with a 70,000 seating capacity for international matches and 75,000 for domestic matches.",
-        "price":"$2000 per hour",
-        "status":"Free",
-        "comments": [
-          {
-            "id": 1,
-            "stadium": "Allianz Arena",
-            "rating":"8",
-            "review": "The pitch and the atmosphere was amazing!"
-          }
-        ]
-       }
-
-    ]
+  "stadiums": [
+    {
+      "id": "1",
+      "name": "Anfield",
+      "image": "https://i.pinimg.com/736x/56/c4/82/56c48286fa641781d5d3707c75e783fa.jpg",
+      "description": "Anfield Stadium is located in Liverpool, England, and it is home to Liverpool Football Club. As of my last update, its capacity is around 54,074 spectators.",
+      "price": "$1000.99 per hour",
+      "status": "Booked",
+      "comments": [
+        {
+          "id": 1,
+          "stadium": "Anfield",
+          "rating": "9",
+          "review": "Atmosphere was great, the fact that I scored here was also cool."
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Etihad",
+      "image": "https://i.guim.co.uk/img/media/888a4d1a86c821338ae04c8af431b2d3dcb80fe6/0_346_5184_3110/master/5184.jpg?width=1200&quality=85&auto=format&fit=max&s=774f6f583792a767bcefa1abe7d000dd",
+      "description": "The Etihad Stadium is located in Manchester, England, with a capacity of around 53,000 spectators.",
+      "price": "$1000.99 per hour",
+      "status": "Free",
+      "comments": [
+        {
+          "id": 1,
+          "stadium": "Etihad",
+          "rating": "10",
+          "review": "What an experience!"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Old Trafford",
+      "image": "https://virtualbackgrounds.site/wp-content/uploads/2020/07/old-trafford-stadium.jpg",
+      "description": "Old Trafford, situated in Manchester, England, boasts a capacity of over 74,000 unhappy fans as the iconic home of  the most frustrating team Manchester United.",
+      "price": "$1200 per hour",
+      "status": "Free",
+      "comments": [
+        {
+          "id": 1,
+          "stadium": "Old Trafford",
+          "rating": "8",
+          "review": "It was fun to play in this stadium."
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Emirates",
+      "image": "https://www.arsenal.com/sites/default/files/styles/link_image_extra_large/public/images/GettyImages-884411976.jpg?auto=webp&itok=w7-4LWKS",
+      "description": "",
+      "price": "$1000 per hour",
+      "status": "Free",
+      "comments": [
+        {
+          "id": 1,
+          "stadium": "Emirates",
+          "rating": "8",
+          "review": "One of the best experiences I have had."
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Allianz Arena",
+      "image": "https://images.unsplash.com/photo-1573559055341-51c1ced2b864?q=80&w=1680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Allianz Arena is a football stadium in Munich, Bavaria, Germany, with a 70,000 seating capacity for international matches and 75,000 for domestic matches.",
+      "price": "$2000 per hour",
+      "status": "Free",
+      "comments": [
+        {
+          "id": 1,
+          "stadium": "Allianz Arena",
+          "rating": "8",
+          "review": "The pitch and the atmosphere was amazing!"
+        }
+      ]
+    }
+  ]
 }

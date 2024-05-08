@@ -3,6 +3,9 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 
 
+
+
+
 function Home() {
   return (
     <>
@@ -30,7 +33,7 @@ function Home() {
           <h1>Welcome to Pitch</h1>
           <p className="par">Where we find your best football pitch to play in “Score your perfect play: Where every kick finds its pitch!"</p>
           <div className="search">
-            <input className="srch" type="search" name="" placeholder="Search" />
+            <input className="srch bg-grey-900" type="search" name="" placeholder="Search" />
           </div>
           <div className="container">
             <footer>
