@@ -1,4 +1,4 @@
-
+import React from "react"
 
 function BookPitch() {
   return (
@@ -10,14 +10,14 @@ function BookPitch() {
           </div>
           <div className="menu">
             <ul>
-              <li>
-                <a href="/">Home</a>
+            <li>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/bookpitch">BookPitch</a>
+                <Link to="/bookpitch">BookPitch</Link>
               </li>
               <li>
-                <a href="/review">Reviews</a>
+                <Link to="/reviews">Reviews</Link>
               </li>
             </ul>
           </div>

@@ -1,5 +1,6 @@
-
+import React from 'react'
 import './Home.css'; 
+import { Link } from 'react-router-dom';
 
 
 function Home() {
@@ -13,13 +14,13 @@ function Home() {
           <div className="menu">
             <ul>
             <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/bookpitch">BookPitch</a>
+                <Link to="/bookpitch">BookPitch</Link>
               </li>
               <li>
-                <a href="/review">Reviews</a>
+                <Link to="/reviews">Reviews</Link>
               </li>
             </ul>
           </div>
