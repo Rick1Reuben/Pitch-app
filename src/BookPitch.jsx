@@ -1,5 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import axios from 'axios';
 
 function BookPitch() {
   const [bookData, setBookData] = useState([])
@@ -8,7 +9,7 @@ function BookPitch() {
 //     fetch("http://localhost:3000/stadiums")
 //     .then(response => response.json())
 //     .then(stadiums => setBookData(stadiums))
-//   },[])
+//   },[]),
 
 
 // here, we are using stadium.status, stadium.name, stadium.price, stadium.description- hizo ni from the server
@@ -19,7 +20,20 @@ const [isBooked, setIsBooked] = useState(false);
 
   const handleClick = () => {
     setIsBooked(!isBooked);
+    updateReservationStatus(!isBooked);-----This updates the status on the server
   };
+
+   const updateReservationStatus = (newStatus) => {
+    // Make a PATCH request to update the reservation status
+    axios.patch('/api/stadiums', { name: stadiumName, status: newStatus ? 'Booked' : 'Free' })
+      .then(response => {
+        console.log('Reservation status updated successfully:', response.data);
+      })
+      .catch(error => {
+        console.error('Error updating reservation status:', error);
+      });
+
+
 
   return (
     <div>
