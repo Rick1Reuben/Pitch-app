@@ -58,6 +58,17 @@ function BookPitch() {
           </ul>
         </div>
       </div>
+      <div className="tent">
+
+          <h1>Want a stadium?</h1>
+          <p className="par">Book with us now to enjoy world class equipment and best football environment to nature talent</p>
+          
+          </div>
+      <div className="search">
+        
+        <input className="srch " type="search" name="" placeholder="Search" />
+        
+      </div>
       <div className="container">
         {bookData &&
           bookData.map((stadium) => (
@@ -79,8 +90,7 @@ function BookPitch() {
               </div>
             </div>
           ))}
-      </div>
-      {/* Footer */}
+          {/* Footer */}
       <footer>
         <p>Pitch</p>
         <p>
@@ -102,6 +112,8 @@ function BookPitch() {
           <p>&copy; 2024 Pitch. All Rights Reserved</p>
         </div>
       </footer>
+      </div>
+      
       {/* Toast Container */}
       <ToastContainer />
     </div>
