@@ -2,7 +2,7 @@ import React from "react"
 import {Link} from "react-router-dom"
 
 function BookPitch() {
-  //const [bookData, setBookData] = useState([])
+  const [bookData, setBookData] = useState([])
   //The data fetched here should show on the "Book Pitch" card. The status should be updated once the 'Book Now' button is pressed. All the updates should be done within the card.
 //   useEffect(() => {
 //     fetch("http://localhost:3000/stadiums")
