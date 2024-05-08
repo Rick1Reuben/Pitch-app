@@ -1,6 +1,42 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 function BookPitch() {
+  //const [bookData, setBookData] = useState([])
+  //The data fetched here should show on the "Book Pitch" card. The status should be updated once the 'Book Now' button is pressed. All the updates should be done within the card.
+//   useEffect(() => {
+//     fetch("http://localhost:3000/stadiums")
+//     .then(response => response.json())
+//     .then(stadiums => setBookData(stadiums))
+//   },[])
+
+
+// here, we are using stadium.status, stadium.name, stadium.price, stadium.description- hizo ni from the server
+//A card should be created, where I can attach this data  
+
+/*The following iwe ndani ya CARD:
+const [isBooked, setIsBooked] = useState(false);
+
+  const handleClick = () => {
+    setIsBooked(!isBooked);
+  };
+
+  return (
+    <div>
+    -FOR THE BUTTONS:
+      {isBooked ? (
+        <button onClick={handleClick}>Cancel Reservation</button>
+      ) : (
+        <button onClick={handleClick}>Book Now</button>
+      )}
+      <p>Status: {isBooked ? 'Booked' : 'Free'}</p>
+    </div>
+  );
+};
+The rest ziwe kwa return hapa in this component:
+{stadiums && stadiums.map(stadium =>
+  <Card key={stadium.name} stadium={stadium}/>
+)}*/ 
   return (
   
       <div id="main">
