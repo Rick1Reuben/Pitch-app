@@ -15,7 +15,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   transition: background-color 0.4s;
-  height: 800px;
+  height: 600px;
 }
 
 .stadium-card:hover {
@@ -60,38 +60,7 @@
   margin-left: auto; /* Align status to the right */
 }
 
-.booking-form {
-  width: 80%; /* Set input fields width */
-}
 
-.booking-form input {
-  width: 100%; /* Make input fields take full width */
-  padding: 10px; /* Adjust padding */
-  margin-bottom: 10px; /* Adjust margin between input fields */
-  border-radius: 5px; /* Apply border radius */
-  border: 1px solid #ccc; /* Add border */
-}
-
-.booking-form select {
-  width: 100%; /* Make select dropdown take full width */
-  padding: 10px; /* Adjust padding */
-  margin-bottom: 10px; /* Adjust margin */
-  border-radius: 5px; /* Apply border radius */
-}
-
-.booking-form button {
-  padding: 6px 10px; /* Increase padding */
-  background-color: #000; /* Set button background color */
-  color: #fff; /* Set text color */
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.4s;
-}
-
-.booking-form button:hover {
-  background-color: green; /* Change button background color on hover */
-}
 
 .bbb {
   padding: 6px 10px; /* Increase padding */
