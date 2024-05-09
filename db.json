@@ -6,7 +6,7 @@
       "image": "https://i.pinimg.com/736x/56/c4/82/56c48286fa641781d5d3707c75e783fa.jpg",
       "description": "Anfield Stadium is located in Liverpool, England, and it is home to Liverpool Football Club. As of my last update, its capacity is around 54,074 spectators.",
       "price": "$1000.99 per hour",
-      "status": "Booked",
+      "status": "Free",
       "comments": [
         {
           "id": 1,
@@ -297,6 +297,14 @@
           "review": "The pitch and the atmosphere was amazing!"
         }
       ]
+    },
+    {
+      "id": "33de",
+      "stadium": "Anfield",
+      "date": "2024-05-04",
+      "time": "19:50",
+      "name": "Lionel Andres Messi",
+      "email": "rileydollar8@gmail.com"
     }
   ]
 }

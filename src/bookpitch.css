@@ -1,74 +1,107 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Align from right to left */
-  }
-  
-  .stadium-card {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: flex-start; /* Align items to the left */
-    width: calc(33.33% - 20px); /* Adjust container width */
-    margin: 10px;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    transition: background-color 0.4s;
-    height: 600px;
-  }
-  
-  .stadium-card:hover {
-    background-color: orange; /* Change background color on hover */
-  }
-  
-  .image-container {
-    width: 100%;
-    height: 320px; /* Adjust image container height */
-    overflow: hidden;
-    border-radius: 10px;
-  }
-  
-  .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .content {
-    width: 100%;
-    padding: 20px 0;
-    text-align: left; /* Align text to the left */
-  }
-  
-  .stadium-name {
-    font-size: 30px; /* Adjust font size */
-    margin-bottom: 10px;
-  }
-  
-  .description {
-    font-size: 20px; /* Adjust font size */
-    margin-bottom: 20px;
-  }
-  
-  .price {
-    font-size: 16px; /* Adjust font size */
-    margin-bottom: 10px;
-  }
-  
-  .status {
-    margin-left: auto; /* Align status to the right */
-  }
-  
-  .book-button {
-    padding: 15px 30px; /* Increase padding */
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.4s;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Align from right to left */
+}
+
+.stadium-card {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align items to the left */
+  width: calc(33.33% - 20px); /* Adjust container width */
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: background-color 0.4s;
+  height: 800px;
+}
+
+.stadium-card:hover {
+  background-color: orange; /* Change background color on hover */
+}
+
+.image-container {
+  width: 100%;
+  height: 320px; /* Adjust image container height */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  width: 100%;
+  padding: 20px 0;
+  text-align: left; /* Align text to the left */
+}
+
+.stadium-name {
+  font-size: 30px; /* Adjust font size */
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 20px; /* Adjust font size */
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 16px; /* Adjust font size */
+  margin-bottom: 10px;
+}
+
+.status {
+  margin-left: auto; /* Align status to the right */
+}
+
+.booking-form {
+  width: 80%; /* Set input fields width */
+}
+
+.booking-form input {
+  width: 100%; /* Make input fields take full width */
+  padding: 10px; /* Adjust padding */
+  margin-bottom: 10px; /* Adjust margin between input fields */
+  border-radius: 5px; /* Apply border radius */
+  border: 1px solid #ccc; /* Add border */
+}
+
+.booking-form select {
+  width: 100%; /* Make select dropdown take full width */
+  padding: 10px; /* Adjust padding */
+  margin-bottom: 10px; /* Adjust margin */
+  border-radius: 5px; /* Apply border radius */
+}
+
+.booking-form button {
+  padding: 6px 10px; /* Increase padding */
+  background-color: #000; /* Set button background color */
+  color: #fff; /* Set text color */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.booking-form button:hover {
+  background-color: green; /* Change button background color on hover */
+}
+
+.bbb {
+  padding: 6px 10px; /* Increase padding */
+  background-color: #000; /* Set button background color */
+  color: #fff; /* Set text color */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+
+}
 
   

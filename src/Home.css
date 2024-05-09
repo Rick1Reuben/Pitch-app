@@ -108,6 +108,7 @@ ul li a:hover {
    letter-spacing: 2px;
    display: flex;
    justify-content: center;
+   font-weight: bold;
 
 
 }
@@ -117,6 +118,7 @@ ul li a:hover {
     font-size: 40px;
     letter-spacing: 1px;
     line-height: 45px;
+    font-weight: bold;
 }
 
 .srch{

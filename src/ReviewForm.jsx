@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
@@ -37,7 +38,7 @@ function ReviewForm() {
     };
 
     try {
-      const response = await fetch('http://localhost:5173/comments', {
+      const response = await fetch(`http://localhost:5173/${stadiums.comments}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
