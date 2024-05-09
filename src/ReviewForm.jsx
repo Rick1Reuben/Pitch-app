@@ -14,14 +14,26 @@ function ReviewForm() {
   const [selectedStadiumImage, setSelectedStadiumImage] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:5173/db.json')
-      .then(response => response.json())
+    fetch('https://pitch-app.onrender.com/stadiums')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch stadiums');
+        }
+        return response.json();
+      })
       .then(data => {
-        setStadiums(data.stadiums);
-        setComments(data.comments || []);
-        // Fetch the image of the selected stadium
-        const selectedStadiumData = data.stadiums.find(stadium => stadium.name === selectedStadium) || {};
-        setSelectedStadiumImage(selectedStadiumData.image || '');
+        if (data.stadiums && data.stadiums.length > 0) {
+          setStadiums(data.stadiums);
+          const selectedStadiumData = data.stadiums.find(stadium => stadium.name === selectedStadium) || {};
+          setSelectedStadiumImage(selectedStadiumData.image || '');
+  
+          // Check if comments exist for selected stadium
+          const commentsData = selectedStadiumData.comments || [];
+          setComments(commentsData);
+        } else {
+          console.error('No stadiums found in the response.');
+          // Handle the case where no stadiums are found
+        }
       })
       .catch(error => console.error('Error fetching data:', error));
   }, [selectedStadium]); // Fetch image when selectedStadium changes
@@ -36,27 +48,6 @@ function ReviewForm() {
       content: comment.trim(),
       rating: parseInt(rating),
     };
-
-    try {
-      const response = await fetch(`http://localhost:5173/${stadiums.comments}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newComment),
-      });
-
-      if (response.ok) {
-        const updatedComments = await response.json();
-        setComments(updatedComments);
-        setComment('');
-        setRating('');
-      } else {
-        console.error('Failed to add comment:', response.status);
-      }
-    } catch (error) {
-      console.error('Error adding comment:', error);
-    }
 
     if (editCommentId !== null) {
       setComments(prevComments =>
@@ -133,11 +124,11 @@ function ReviewForm() {
             </div>
             <button type="submit">{editCommentId !== null ? 'Update Comment' : 'Add Comment'}</button>
           </form>
-          <div class="stadium-details">
-  <div class="stadium-image">
+          <div className="stadium-details">
+  <div className="stadium-image">
     <img src={selectedStadiumImage} alt="Stadium" style={{ borderRadius: '10px' }} />
   </div>
-  <div class="stadium-info">
+  <div className="stadium-info">
     <p><strong>Name:</strong> {selectedStadiumData.name}</p>
     <p><strong>Description:</strong> {selectedStadiumData.description}</p>
     <p><strong>Price:</strong> {selectedStadiumData.price}</p>

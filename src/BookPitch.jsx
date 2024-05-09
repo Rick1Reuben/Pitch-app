@@ -9,14 +9,14 @@ function BookPitch() {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:3000/stadiums")
+    fetch("https://pitch-app.onrender.com/stadiums")
       .then((response) => response.json())
       .then((stadiums) => setBookData(stadiums));
   }, []);
 
   const handleBooking = (stadiumId, currentStatus) => {
     const updatedStatus = currentStatus === "Free" ? "Booked" : "Free";
-    fetch(`http://localhost:3000/stadiums/${stadiumId}`, {
+    fetch(`https://pitch-app.onrender.com/stadiums/${stadiumId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

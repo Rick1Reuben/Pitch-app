@@ -7,7 +7,7 @@ function Home() {
   const [stadiums, setStadiums] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/stadiums")
+    fetch("https://pitch-app.onrender.com/stadiums")
      .then(response => response.json()) // Convert the response to JSON
      .then(data => setStadiums(data)) // Correctly update the state with the fetched data
      .catch(error => console.error("Error fetching stadiums:", error));
