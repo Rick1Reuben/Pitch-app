@@ -3,7 +3,7 @@
 #### **By Ryan Anzaye, Nimrod Njau, Reuben Kamau**
 ## Description
 The application includes a  landing (Home) page which shows the option to get started and a footer with contact details. 
-There is also a book pitch page that loads when you get started, lastly you can add comment about different pitches in the reviews.
+There is also a book pitch page that loads when you get started, lastly you can add, edit and delete comments about different pitches in the reviews.
 ## Setup/Installation Requirements
 * Fork the repository in the code section to the desired folder
 * Open in your Coding app
