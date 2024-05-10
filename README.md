@@ -14,6 +14,8 @@ The application has both backend and frontend.
 ## Live server
 * You can view the web live on [Pitch App]
 * https://ephemeral-starburst-b248cc.netlify.app/
+
+* The link for the backend is https://pitch-app.onrender.com/backend/db.json/stadiums
 ## Known Bugs
 The application works perfectly well, no bugs.
 ## Technologies Used
