@@ -1,80 +1,81 @@
-
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
-import './review.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./bookpitch.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ReviewForm() {
   const [stadiums, setStadiums] = useState([]);
-  const [selectedStadium, setSelectedStadium] = useState('');
-  const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState('');
-  const [rating, setRating] = useState('');
-  const [editCommentId, setEditCommentId] = useState(null);
-  const [selectedStadiumImage, setSelectedStadiumImage] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch('https://pitch-app.onrender.com/stadiums')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch stadiums');
-        }
-        return response.json();
+     .then((response) => response.json())
+     .then((data) => setStadiums(data));
+  }, []);
+
+  const handleAddComment = (stadiumId, newComment) => {
+    // Find the stadium by ID
+    const updatedStadiums = stadiums.map(stadium => {
+      if (stadium.id === stadiumId) {
+        // Add the new comment to the stadium's comments array
+        stadium.comments.push(newComment);
+      }
+      return stadium;
+    });
+
+    // Update state with the modified stadiums array
+    setStadiums(updatedStadiums);
+
+    // Assuming you have an endpoint to update stadiums with comments
+    fetch(`https://pitch-app.onrender.com/${stadiumId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comments: updatedStadiums.find(stadium => stadium.id === stadiumId).comments }),
+    })
+     .then((response) => response.json())
+     .then(() => {
+        // Clear the form input fields
+        document.getElementById(`comment-form-${stadiumId}`).reset();
+        toast.success("Comment added successfully!");
       })
-      .then(data => {
-        if (data.stadiums && data.stadiums.length > 0) {
-          setStadiums(data.stadiums);
-          const selectedStadiumData = data.stadiums.find(stadium => stadium.name === selectedStadium) || {};
-          setSelectedStadiumImage(selectedStadiumData.image || '');
-  
-          // Check if comments exist for selected stadium
-          const commentsData = selectedStadiumData.comments || [];
-          setComments(commentsData);
-        } else {
-          console.error('No stadiums found in the response.');
-          // Handle the case where no stadiums are found
-        }
+     .catch((error) => console.error("Error adding comment:", error));
+  };
+
+  const handleDeleteComment = (stadiumId, commentId) => {
+    // Find the stadium by ID
+    const updatedStadiums = stadiums.map(stadium => {
+      if (stadium.id === stadiumId) {
+        // Filter out the comment by ID
+        stadium.comments = stadium.comments.filter(comment => comment.id !== commentId);
+      }
+      return stadium;
+    });
+
+    // Update state with the modified stadiums array
+    setStadiums(updatedStadiums);
+
+    // Assuming you have an endpoint to update stadiums with comments
+    fetch(`https://pitch-app.onrender.com/${stadiumId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ comments: updatedStadiums.find(stadium => stadium.id === stadiumId).comments }),
+    })
+     .then((response) => response.json())
+     .then(() => {
+        toast.error("Deleted ");
       })
-      .catch(error => console.error('Error fetching data:', error));
-  }, [selectedStadium]); // Fetch image when selectedStadium changes
-  
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedStadium || !comment || !rating) return;
-
-    const newComment = {
-      id: Date.now(),
-      stadium: selectedStadium,
-      content: comment.trim(),
-      rating: parseInt(rating),
-    };
-
-    if (editCommentId !== null) {
-      setComments(prevComments =>
-        prevComments.map(c =>
-          c.id === editCommentId ? { ...c, content: newComment.content, rating: newComment.rating } : c
-        )
-      );
-      setEditCommentId(null);
-    } else {
-      setComments(prevComments => [...prevComments, newComment]);
-    }
-
-    setComment('');
-    setRating('');
+     .catch((error) => console.error("Error deleting comment:", error));
   };
 
-  const handleCommentEdit = (id, content, rating) => {
-    setEditCommentId(id);
-    setComment(content);
-    setRating(rating.toString());
-  };
-
-  const handleCommentDelete = (id) => {
-    setComments(prevComments => prevComments.filter(c => c.id !== id));
-  };
-
-  const selectedStadiumData = stadiums.find(stadium => stadium.name === selectedStadium) || {};
+  // Filter stadiums based on search term
+  const filteredStadiums = stadiums.filter(stadium =>
+    stadium.name && stadium.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div id="main">
@@ -97,76 +98,65 @@ function ReviewForm() {
         </div>
       </div>
       <div className="tent">
-        <h1>How do you feel?</h1>
-        <p className="par">We value your reviews on the stadium and we would love to hear from you</p>
+        <h1>Reviews</h1>
+        <p className="par">Check out what others say about our stadiums.</p>
+      </div>
+      <div className="search">
+        <input className="srch" type="search" placeholder="Search" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       </div>
       <div className="container">
-        <div className="card">
-          <h2 className="heading">Review Form</h2>
-          <form className="form" onSubmit={handleCommentSubmit}>
-            <div className="input-group">
-              <label htmlFor="stadium">Stadium Name:</label>
-              <select id="stadium" value={selectedStadium} onChange={(e) => setSelectedStadium(e.target.value)}>
-                {stadiums.map(stadium => (
-                  <option key={stadium.id} value={stadium.name}>
-                    {stadium.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="input-group">
-              <label htmlFor="comment">Comment:</label>
-              <textarea id="comment" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
-            </div>
-            <div className="input-group">
-              <label htmlFor="rating">Rating (1-10):</label>
-              <input type="number" id="rating" value={rating} onChange={(e) => setRating(e.target.value)} min="1" max="10" />
-            </div>
-            <button type="submit">{editCommentId !== null ? 'Update Comment' : 'Add Comment'}</button>
-          </form>
-          <div className="stadium-details">
-  <div className="stadium-image">
-    <img src={selectedStadiumImage} alt="Stadium" style={{ borderRadius: '10px' }} />
-  </div>
-  <div className="stadium-info">
-    <p><strong>Name:</strong> {selectedStadiumData.name}</p>
-    <p><strong>Description:</strong> {selectedStadiumData.description}</p>
-    <p><strong>Price:</strong> {selectedStadiumData.price}</p>
-    <p><strong>Status:</strong> {selectedStadiumData.status}</p>
-  </div>
-            <h2 className="heading">Comments</h2>
-            <ul>
-              {comments.map(c => (
-                <li key={c.id}>
-                  <p><strong>Stadium: </strong>{c.stadium}</p>
-                  <p><strong>Rating: </strong>{c.rating}</p>
-                  <p>{c.content}</p>
-                  <button className="edit-button" onClick={() => handleCommentEdit(c.id, c.content, c.rating)}>Edit</button>
-                  <button className="delete-button" onClick={() => handleCommentDelete(c.id)}>Delete</button>
-                </li>
+        {filteredStadiums.map((stadium) => (
+          <div key={stadium.id} className="stadium-card">
+            <h3 className="stadium-name">{stadium.name}</h3>
+            <img src={stadium.image} alt="Stadium" />
+            <p className="description">{stadium.description}</p>
+            <p className="price">Price: {stadium.price}</p>
+            <p className="status">Status: {stadium.status}</p>
+            <form id={`comment-form-${stadium.id}`} className="comment-form" onSubmit={(e) => {
+              e.preventDefault();
+              handleAddComment(stadium.id, { name: e.target.name.value, rating: e.target.rating.value, comment: e.target.comment.value });
+            }}>
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="number" name="rating" placeholder="Rating (1-10)" min="1" max="10" required />
+              <textarea name="comment" placeholder="Your Comment" required></textarea>
+              <button type="submit">Add Comment</button>
+            </form>
+            <div className="comments">
+              <h4 style={{ marginTop: '20px' }}>Comments:</h4>
+              {stadium.comments.map((comment, index) => (
+                <div key={index} className="comment">
+                  <p><strong>{comment.name}</strong> - Rating: {comment.rating}</p>
+                  <p>{comment.comment}</p>
+                  <button className="delete-button" onClick={() => handleDeleteComment(stadium.id, comment.id)}>Delete</button>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
-        </div>
-        <footer>
-          <p>Pitch</p>
-          <p>For more information contact us at info@pitch.co.ke or follow us on our social media platforms at pitch.ke</p>
-          <div className="social">
-            <a href="#">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-linkedin"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-whatsapp"></i>
-            </a>
-          </div>
-          <div className="copy">
-            <p>&copy; 2024 Pitch. All Rights Reserved</p>
-          </div>
-        </footer>
+        ))}
       </div>
+      <footer>
+        <p>Pitch</p>
+        <p>
+          For more information, contact us at info@pitch.co.ke or follow us
+          on our social media platforms at pitch.ke
+        </p>
+        <div className="social">
+          <a href="#">
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a href="#">
+            <i className="fab fa-linkedin"></i>
+          </a>
+          <a href="#">
+            <i className="fab fa-whatsapp"></i>
+          </a>
+        </div>
+        <div className="copy">
+          <p>&copy; 2024 Pitch. All Rights Reserved</p>
+        </div>
+      </footer>
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 }
