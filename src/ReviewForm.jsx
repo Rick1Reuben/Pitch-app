@@ -9,7 +9,7 @@ function ReviewForm() {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch('https://pitch-app.onrender.com/stadiums')
+    fetch('https://pitch-app.onrender.com/backend/db.json/stadiums')
      .then((response) => response.json())
      .then((data) => setStadiums(data));
   }, []);
@@ -28,7 +28,7 @@ function ReviewForm() {
     setStadiums(updatedStadiums);
 
     // Assuming you have an endpoint to update stadiums with comments
-    fetch(`https://pitch-app.onrender.com/${stadiumId}`, {
+    fetch(`https://pitch-app.onrender.com/backend/db.json/stadiums/${stadiumId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function ReviewForm() {
     setStadiums(updatedStadiums);
 
     // Assuming you have an endpoint to update stadiums with comments
-    fetch(`https://pitch-app.onrender.com/${stadiumId}`, {
+    fetch(`https://pitch-app.onrender.com/backend/db.json/stadiums/${stadiumId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
