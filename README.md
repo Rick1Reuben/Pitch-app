@@ -12,7 +12,8 @@ There is also a book pitch page that loads when you get started, lastly you can 
 * And you are all done
 The application has both backend and frontend.
 ## Live server
-* You can view the web live on [Pitch App]()
+* You can view the web live on [Pitch App]
+* https://ephemeral-starburst-b248cc.netlify.app/
 ## Known Bugs
 The application works perfectly well, no bugs.
 ## Technologies Used
